@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "kondo.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,6 +99,7 @@ int main(void)
   MX_UART7_Init();
   MX_UART8_Init();
   /* USER CODE BEGIN 2 */
+  kondo_servo_t kondo_servo = {1, 1250000, 0, huart8, 0, 0, 0, 0};
 
   /* USER CODE END 2 */
 
@@ -106,6 +107,22 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  HAL_Delay(1000);
+	  HAL_GPIO_TogglePin(LED0_GPIO_Port, LED0_Pin);
+	  setPosition(&kondo_servo, 9000);
+
+	  HAL_Delay(1000);
+	  HAL_GPIO_TogglePin(LED0_GPIO_Port, LED0_Pin);
+	  setPosition(&kondo_servo, 9000);
+
+	  HAL_Delay(1000);
+	  HAL_GPIO_TogglePin(LED0_GPIO_Port, LED0_Pin);
+	  setPosition(&kondo_servo, 7500);
+
+	  HAL_Delay(1000);
+	  HAL_GPIO_TogglePin(LED0_GPIO_Port, LED0_Pin);
+	  setPosition(&kondo_servo, 6000);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -359,11 +376,22 @@ static void MX_UART8_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOE_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(LED0_GPIO_Port, LED0_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : LED0_Pin */
+  GPIO_InitStruct.Pin = LED0_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(LED0_GPIO_Port, &GPIO_InitStruct);
 
 }
 
