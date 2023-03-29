@@ -2,7 +2,7 @@
 Mcu.Family=STM32H7
 RCC.DIVQ2Freq_Value=129000000
 ProjectManager.MainLocation=Core/Src
-ProjectManager.ProjectFileName=kondo_servo.ioc
+ProjectManager.ProjectFileName=spinal_kondo.ioc
 RCC.SAI1Freq_Value=129000000
 RCC.CortexFreq_Value=64000000
 UART4.IPParameters=BaudRate
@@ -105,7 +105,7 @@ Mcu.Name=STM32H743VITx
 RCC.LPTIM2Freq_Value=64000000
 ProjectManager.HalAssertFull=false
 RCC.DIVP2Freq_Value=129000000
-ProjectManager.ProjectName=kondo_servo
+ProjectManager.ProjectName=spinal_kondo
 ProjectManager.UnderRoot=true
 PA0.Signal=UART4_TX
 RCC.APB3Freq_Value=64000000
